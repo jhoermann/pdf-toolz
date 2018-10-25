@@ -34,7 +34,7 @@ async function readPageSizes() {
 readPageSizes()
 ```
 
-### Converting PDF to one image per page
+### Converting PDF to image
 
 ```js
 const fs = require('mz/fs');
@@ -42,11 +42,9 @@ const {pdfToImage} = require('pdf-toolz/PDF2Image');
 
 async function exportPageImages() {
     const pdf = await fs.readFile('test/portrait-singlepage.pdf');
-    const pageImages = await pdfToImage(pdf, 'png', 400 /* dpi */);
-    // Export the page images
-    await fs.writeFile("page-1.png", pageImages[0]);
-    await fs.writeFile("page-2.png", pageImages[1]);
-    await fs.writeFile("page-3.png", pageImages[2]);
+    const img = await pdfToImage(pdf, 'png', 400 /* dpi */);
+    // Export the page image
+    await fs.writeFile("image.png", img);
 }
 
 exportPageImages()
